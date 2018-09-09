@@ -94,7 +94,7 @@
 
 
 
-  <meta name="keywords" content="当你拿着锤子，世界在你眼中只是个钉子" />
+  <meta name="keywords" content="hmm,crf,序列标注," />
 
 
 
@@ -105,14 +105,27 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Categories">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta name="description" content="知乎旧稿本文主要是从HMM到CRF的推导，对李宏毅老师的课作个备忘。  HMM的二个假设: 齐次马尔科夫性假设：P(i_{t}|i_{t-1},o_{t-1}…,i_{1},o_{1})=P(i_{t}|i_{t-1}), t=1,2…T  即t时刻的状态只依赖于前一时刻的状态，与其他时刻的状态和观测无关，并且与时刻t无关。  观测独立性假设：P(o_{t}|i_{T},o_{T},i_{T-1">
+<meta name="keywords" content="hmm,crf,序列标注">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从HMM推到CRF">
+<meta property="og:url" content="http://yoursite.com/2018/09/09/从HMM推到CRF/index.html">
 <meta property="og:site_name" content="Leborn Fang">
+<meta property="og:description" content="知乎旧稿本文主要是从HMM到CRF的推导，对李宏毅老师的课作个备忘。  HMM的二个假设: 齐次马尔科夫性假设：P(i_{t}|i_{t-1},o_{t-1}…,i_{1},o_{1})=P(i_{t}|i_{t-1}), t=1,2…T  即t时刻的状态只依赖于前一时刻的状态，与其他时刻的状态和观测无关，并且与时刻t无关。  观测独立性假设：P(o_{t}|i_{T},o_{T},i_{T-1">
 <meta property="og:locale" content="ZH-Hans">
-<meta property="og:updated_time" content="2018-09-08T13:40:06.174Z">
+<meta property="og:image" content="http://yoursite.com/2018/09/09/从HMM推到CRF/具体问题.png">
+<meta property="og:image" content="http://yoursite.com/2018/09/09/从HMM推到CRF/改写.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/09/09/从HMM推到CRF/crf实例.png">
+<meta property="og:image" content="http://yoursite.com/2018/09/09/从HMM推到CRF/每一项.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/09/09/从HMM推到CRF/写成权重相乘.png">
+<meta property="og:image" content="http://yoursite.com/2018/09/09/从HMM推到CRF/crf.png">
+<meta property="og:image" content="http://yoursite.com/2018/09/09/从HMM推到CRF/标准形式.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/09/09/从HMM推到CRF/求导公式.jpg">
+<meta property="og:updated_time" content="2018-09-09T10:25:33.657Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Categories">
+<meta name="twitter:title" content="从HMM推到CRF">
+<meta name="twitter:description" content="知乎旧稿本文主要是从HMM到CRF的推导，对李宏毅老师的课作个备忘。  HMM的二个假设: 齐次马尔科夫性假设：P(i_{t}|i_{t-1},o_{t-1}…,i_{1},o_{1})=P(i_{t}|i_{t-1}), t=1,2…T  即t时刻的状态只依赖于前一时刻的状态，与其他时刻的状态和观测无关，并且与时刻t无关。  观测独立性假设：P(o_{t}|i_{T},o_{T},i_{T-1">
+<meta name="twitter:image" content="http://yoursite.com/2018/09/09/从HMM推到CRF/具体问题.png">
 
 
 
@@ -142,13 +155,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/09/09/从HMM推到CRF/"/>
 
 
 
 
 
-  <title>Categories | Leborn Fang</title>
+  <title>从HMM推到CRF | Leborn Fang</title>
   
 
 
@@ -307,33 +320,206 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/09/从HMM推到CRF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Leborn">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leborn Fang">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">Categories</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
+          <h1 class="post-title" itemprop="name headline">从HMM推到CRF</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-09T17:46:38+08:00">
+                2018-09-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-      </div>
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/序列标注/" itemprop="url" rel="index">
+                    <span itemprop="name">序列标注</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <blockquote>
+<p>知乎旧稿<br>本文主要是从HMM到CRF的推导，对李宏毅老师的课作个备忘。<br><!--Read more--></p>
+</blockquote>
+<h4 id="HMM的二个假设"><a href="#HMM的二个假设" class="headerlink" title="HMM的二个假设:"></a>HMM的二个假设:</h4><ul>
+<li>齐次马尔科夫性假设：<br>P(i_{t}|i_{t-1},o_{t-1}…,i_{1},o_{1})=P(i_{t}|i_{t-1}), t=1,2…T</li>
+</ul>
+<p>即t时刻的状态只依赖于前一时刻的状态，与其他时刻的状态和观测无关，并且与时刻t无关。</p>
+<ul>
+<li>观测独立性假设：<br>P(o_{t}|i_{T},o_{T},i_{T-1},o_{T-1},…,i_{1},o_{1})=P(o_{t}|i_{t})</li>
+</ul>
+<p>即t时刻的观测仅与t时刻的状态。</p>
+<p>HMM 是生成式模型，所以是对P(x,y)联合概率分布进行建模，针对具体问题：</p>
+<img src="/2018/09/09/从HMM推到CRF/具体问题.png">
+<p>其中，y是状态变量，x是观测变量，根据联合概率的公式可以写成P(x,y)=P(y)P(x|y)。</p>
+<p>根据二个假设可以展开写成：</p>
+
+<p>蓝色下划线代表的状态转移的那一部分的概率，<strong>红色部分表示的是发射概率，可以看出HMM的状态转移和发射部分是分开建模的，crf是有特征函数，将这两个合在一起建模的，这是crf的好处</strong>。</p>
+<h4 id="从HMM到CRF"><a href="#从HMM到CRF" class="headerlink" title="从HMM到CRF"></a>从HMM到CRF</h4><p>对P(x,y)取对数：</p>
+<img src="/2018/09/09/从HMM推到CRF/改写.jpg">
+<p>其中可以进行改写：</p>
+
+<p>P(t|s)表示标注s 生成word t的概率，N(s,t)表示标注 s生成word t的次数，已经很像crf中特征函数和权重的相乘了。</p>
+<p>此处是一个例子：</p>
+<img src="/2018/09/09/从HMM推到CRF/crf实例.png">
+<p>对每一项都进行这样的改写，可以得到：</p>
+<img src="/2018/09/09/从HMM推到CRF/每一项.jpg">
+<p>这样，此处的<strong>对数概率</strong>就变成了<strong>权重</strong>， N_{s,t}(x,y) 表示成了<strong>特征函数</strong>，对于crf来说可以不仅仅是由动词后面接名词这种特征，<strong>它可以考虑ngram的特征，还有一些其他自己定义的特征，然后去求解对应的权重。</strong></p>
+<p>这样P(x,y)写成下面的式子：</p>
+<img src="/2018/09/09/从HMM推到CRF/写成权重相乘.png">
+<p>crf的公式就可以表示出来：<br><img src="/2018/09/09/从HMM推到CRF/crf.png"></p>
+<p>将 w.\phi(x,y) 展开可以写成标准的crf公式：</p>
+<img src="/2018/09/09/从HMM推到CRF/标准形式.jpg">
+<p>其中 t_{k} , s_{l} 是特征函数， \theta_{k} , \theta_{l} 是权重。</p>
+<p>这样由HMM导出了CRF。<br>对于crf的训练，自然是更新每种特征的权重，使得表现最好，使得P(y|x)最大,</p>
+<p>最终求导得到的公式如下：</p>
+<img src="/2018/09/09/从HMM推到CRF/求导公式.jpg">
+<p>可以利用此导数对不同的特征进行权重的更新。</p>
+
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/hmm/" rel="tag"># hmm</a>
+          
+            <a href="/tags/crf/" rel="tag"># crf</a>
+          
+            <a href="/tags/序列标注/" rel="tag"># 序列标注</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/09/rnn基本模型总结/" rel="next" title="rnn基本模型总结">
+                <i class="fa fa-chevron-left"></i> rnn基本模型总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -371,8 +557,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -448,6 +643,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#HMM的二个假设"><span class="nav-number">1.</span> <span class="nav-text">HMM的二个假设:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#从HMM到CRF"><span class="nav-number">2.</span> <span class="nav-text">从HMM到CRF</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -970,6 +1181,26 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 
