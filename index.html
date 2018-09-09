@@ -428,12 +428,12 @@
 <h4 id="GRU"><a href="#GRU" class="headerlink" title="GRU"></a>GRU</h4><img src="/2018/09/09/rnn基本模型总结/gru.png">
 <p>GRU cell有两个gate:</p>
 <ul>
-<li><p>update gate:<br>顾名思义，就是更新cell的gate,不同于lstm,利用forget gate和input gate分别去控制当前输入 $\tilde{c}^{<t>}$ 和之前cell $c^{<t-1>}$，<br>gru只用了一个update gate。</t-1></t></p>
+<li><p>update gate:<br>顾名思义，就是更新cell的gate,不同于lstm,利用forget gate和input gate分别去控制当前输入 $\tilde{c}^{t}$ 和之前cell $c^{t-1}$，<br>gru只用了一个update gate。</p>
 </li>
-<li><p>reset gate:<br>控制当前输入 $\tilde{c}^{<t>}$ 中有多少来自之前的输出，取值在0~1之间。</t></p>
+<li><p>reset gate:<br>控制当前输入 $\tilde{c}^{t}$ 中有多少来自之前的输出，取值在0~1之间。</p>
 </li>
 </ul>
-<p>GRU模型并没有ouput gate,$a^{<t>}$ 与cell中保存的信息 c^{<t>} 是一样的。</t></t></p>
+<p>GRU模型并没有ouput gate,$a^{t}$ 与cell中保存的信息 c^{t} 是一样的。</p>
 <h4 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h4><img src="/2018/09/09/rnn基本模型总结/lstm.jpg">
 <p>LSTM相较于GRU多了一个gate,即forget gate,将GRU中的update gate分成input gate和forget gate。且输出信息通过output gate去控制。</p>
 <ul>
